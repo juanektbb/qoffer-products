@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/server/server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +13,11 @@
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@babel/runtime": "^7.12.5",
     "@kooneko/livereload-webpack-plugin": "^1.2.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
@@ -26,7 +29,17 @@
     "webpack-livereload-plugin": "^2.3.0"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "multer": "^1.4.2",
+    "pg": "^8.5.1",
+    "pg-format": "^1.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
