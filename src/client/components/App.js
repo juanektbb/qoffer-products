@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import upload_img from '../images/upload.png'
+import upload_ok from '../images/upload_ok.png'
+
 class App extends Component {
   state = {
     error: null,
@@ -10,7 +13,7 @@ class App extends Component {
   }
   
   handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     this.setState({ loading: true })
 
@@ -21,51 +24,60 @@ class App extends Component {
     .then(response => response.data)
     
     this.handleResponse(res_data)
-  };
+  }
 
   //Server response
   handleResponse = async (res_data) => {
     if(res_data['error']){
-      return this.setState({ error: res_data['error'], loading: false });
+      return this.setState({ error: res_data['error'], loading: false })
 
     }else{
-      return this.setState({ successResponse: res_data['data'], loading: false });
+      //Success shows a message and reset the state to prevent resumitting
+      document.getElementById("uploadFileField").value = ""
+      return this.setState({ successResponse: res_data['data'], loading: false, selectedFile: null })
     }
   }
 
-  onChangeHandler=event=>{
-
+  onChangeHandler = (event) =>{
     if(event.target.files[0].size > 20000){
-      return this.setState({ error: "Your file seems to be very large, try to upload a ligher one. Up to 20MB is allowed." });
+      return this.setState({ error: "Your file seems to be very large, try to upload a ligher one. Up to 20MB is allowed" })
     }
 
-    console.log(event.target.files[0])
-      this.setState({
-        error: null,
-        selectedFile: event.target.files[0],
-      })
+    this.setState({
+      error: null,
+      selectedFile: event.target.files[0],
+    })
   }
-
   
   render() {
     return (
       <div className="App">
-        <h1>Import your company products from CSV</h1>
+        <h1>Import your products from CSV</h1>
         
-        {this.state.error && <div>ERROR: {this.state.error}</div>}
+        {this.state.error && <div className="msg_error">{this.state.error}</div>}
+        {this.state.loading && <div  className="msg_loading">Submitting... </div>}
+        {this.state.successResponse && !this.state.error && <div className="msg_success">{this.state.successResponse}</div>}
 
-        {this.state.loading && <div>Loading</div>}
+        <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
+          <div className="submit_area" onClick={() => document.getElementById("uploadFile").click()}>
+            <h3>{this.state.selectedFile ? this.state.selectedFile.name : "Choose your file..."}</h3>
 
-        {this.state.successResponse && <div>{this.state.successResponse}</div>}
+            <label className="file_label" id="uploadFile">
+              <input type="file" name="csv_file" id="uploadFileField" onChange={this.onChangeHandler} />
+            </label>
 
-        <form onSubmit={this.handleSubmit}>
-          <input type="file" name="csv_file" onChange={this.onChangeHandler}/>
+            <div className="image_area">
+              {this.state.selectedFile ? <img src={upload_ok} /> : <img src={upload_img} />}
+            </div>
+          </div>
 
-          <button type="submit">Submit</button>
+          <div className="area_button">
+            {!this.state.loading && <button type="submit" className="submit_button">Submit file</button>}
+          </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

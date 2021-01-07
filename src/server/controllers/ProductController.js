@@ -11,9 +11,14 @@ export const submitCSV = async (req, res) => {
 
     const { csv_file } = req.files
 
+    console.log(csv_file)
+
     //File submitted needs to be CSV
     if(csv_file.mimetype != 'text/csv')
         return res.json({ "error": "Only CSV files are accepted, try with another file" }).end()
+
+    if(csv_file.size > 20000)
+        return res.json({ "error": "Your file seems to be very large, try to upload a ligher one. Up to 20MB is allowed" })
   
     //Possible mapping options to read the unknown csv file
     const map_headers = {
@@ -81,17 +86,14 @@ export const submitCSV = async (req, res) => {
             //Find any missing key that was not recorded and kill the stream as we don't accept this file
             for(let key in headers){
                 if(!headers[key]){
-
-                    //TODO: improve searching keywords like "Company name product" for "name"
+                    //TODO: Improve searching keywords like "Company name product" for "name"
 
                     return res.json({ "error": "Your file does not have all the required headings which are (name, code, sku and description)" }).end()
-           
                 }
             }
             
             is_first_row = false
         }
-
 
         //One of the required fields is empty or no valid
         if(!row[headers['p_name']] || !row[headers['p_code']] || !row[headers['p_sku']] || !row[headers['p_description']]){
@@ -115,9 +117,10 @@ export const submitCSV = async (req, res) => {
         const insert_result = await pool.query(insert_query)
         
     }catch(e){
-        return res.json({ "error": "Unexpected error happened when storing your data" }).end()
+        return res.json({ "error": "Unexpected error happened when storing the products" }).end()
     }
 
-    return res.json({ "data": "Your products where save succesfully, thank you!" }).end()
+    //Success message
+    return res.json({ "data": "Your products were saved succesfully, thank you!" }).end()
 
 }

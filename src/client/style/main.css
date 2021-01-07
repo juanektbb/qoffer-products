@@ -1,3 +1,78 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
 body{
-    background-color: lightskyblue;
+    background-color: #f6f6f6;
+}
+.App{
+    width: 600px;
+    min-height: 400px;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    background-color: #fdfdfd;
+}
+.App h1{
+    padding: 0;
+    margin: 0;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.submit_area{
+    width: 100%;
+    border-radius: 5px;
+    padding: 50px 20px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px dashed #ddd;
+}
+.submit_area:hover{
+    background-color: #f8f8f8;
+}
+.submit_area h3{
+    padding: 0;
+    margin: 0;
+    margin-bottom: 25px;
+}
+.file_label, .file_label input[type="file"]{
+    display: none;
+}
+.image_area img{
+    width: 100px
+}
+.area_button{
+    height: 46px;
+}
+.submit_button{
+    margin-top: 10px;
+    background-color: #3489eb;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    float: right
+}
+.submit_button:hover{
+    background-color: #51a1ff;
+}
+.msg_error{
+    color: #dc3545;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.msg_success{
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.msg_loading{
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 15px;
 }

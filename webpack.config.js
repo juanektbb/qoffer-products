@@ -19,7 +19,13 @@ export default {
             {
                 use: ['style-loader', 'css-loader'],
                 test: /\.css$/
-            }    
+            },
+            {
+                test: /\.(jpg|png)$/,
+                use: {
+                    loader: 'url-loader',
+                }
+            }
         ]
     },
     plugins: [
