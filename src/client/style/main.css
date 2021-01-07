@@ -8,7 +8,7 @@ body{
 .App{
     width: 600px;
     min-height: 400px;
-    padding: 20px;
+    padding: 20px 50px;
     margin: 50px auto;
     border-radius: 8px;
     border: 1px solid #eee;

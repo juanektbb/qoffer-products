@@ -12,10 +12,11 @@ class App extends Component {
     selectedFile: null
   }
   
+  //Submitting the form
   handleSubmit = async (e) => {
     e.preventDefault()
 
-    this.setState({ loading: true })
+    this.setState({ loading: true, successResponse: '', error: null })
 
     const data = new FormData() 
     data.append('csv_file', this.state.selectedFile)
@@ -38,6 +39,7 @@ class App extends Component {
     }
   }
 
+  //Change the file field
   onChangeHandler = (event) =>{
     if(event.target.files[0].size > 20000){
       return this.setState({ error: "Your file seems to be very large, try to upload a ligher one. Up to 20MB is allowed" })

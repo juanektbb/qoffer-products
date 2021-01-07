@@ -24,20 +24,30 @@ export const submitCSV = async (req, res) => {
     const map_headers = {
         "title": "p_name",
         "name": "p_name",
+        "item": "p_name",
         "product name": "p_name",
+        "item name": "p_name",
         "product title": "p_name",
+        "item title": "p_name",
         "name product": "p_name",
+        "name item": "p_name",
         "title product": "p_name",
+        "title item": "p_name",
         "p_name": "p_name",
+        "p_item": "p_name",
         "p_title": "p_name",
 
         "code": "p_code",
         "product code": "p_code",
+        "item code": "p_code",
+        "code item": "p_code",
         "code product": "p_code",
         "p_code": "p_code",
 
         "sku": "p_sku",
+        "sku item": "p_sku",
         "sku product": "p_sku",
+        "item sku": "p_sku",
         "product sku": "p_sku",
         "stock keep unit": "p_sku",
         "stock keeping unit": "p_sku",
@@ -47,7 +57,9 @@ export const submitCSV = async (req, res) => {
 
         "description": "p_description",
         "product description": "p_description",
+        "item description": "p_description",
         "description product": "p_description",
+        "description item": "p_description",
         "p_description": "p_description",
     }
 
@@ -79,7 +91,7 @@ export const submitCSV = async (req, res) => {
 
             //For every key in the csv file
             for(let i in header_keys){
-                let clean_str = header_keys[i].toLowerCase().trim() //Trim spaces and set to lowercase
+                let clean_str = header_keys[i].toString().toLowerCase().trim() //Trim spaces and set to lowercase
 
                 //Map our keys to the ones given in csv if exists
                 if(clean_str in map_headers){
@@ -108,10 +120,10 @@ export const submitCSV = async (req, res) => {
         //Populate final struture for database
         }else{
             finalStructure.push([
-                row[headers['p_name']], 
-                row[headers['p_code']], 
-                row[headers['p_sku']], 
-                row[headers['p_description']], 
+                row[headers['p_name']].toString(), 
+                row[headers['p_code']].toString(), 
+                row[headers['p_sku']].toString(), 
+                row[headers['p_description']].toString(), 
             ])
         }
     }
