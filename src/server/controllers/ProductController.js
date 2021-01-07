@@ -22,10 +22,14 @@ export const submitCSV = async (req, res) => {
   
     //Possible mapping options to read the unknown csv file
     const map_headers = {
+        "title": "p_name",
         "name": "p_name",
         "product name": "p_name",
+        "product title": "p_name",
         "name product": "p_name",
+        "title product": "p_name",
         "p_name": "p_name",
+        "p_title": "p_name",
 
         "code": "p_code",
         "product code": "p_code",
@@ -86,7 +90,8 @@ export const submitCSV = async (req, res) => {
             //Find any missing key that was not recorded and kill the stream as we don't accept this file
             for(let key in headers){
                 if(!headers[key]){
-                    //TODO: Improve searching keywords like "Company name product" for "name"
+
+                    //TODO: Improve searching keywords like "Company name product" for "name" if any field is missing
 
                     return res.json({ "error": "Your file does not have all the required headings which are (name, code, sku and description)" }).end()
                 }
@@ -98,7 +103,7 @@ export const submitCSV = async (req, res) => {
         //One of the required fields is empty or no valid
         if(!row[headers['p_name']] || !row[headers['p_code']] || !row[headers['p_sku']] || !row[headers['p_description']]){
 
-            //TODO: Let the user know which row is not valid
+            //TODO: Let the user know which row is not valid in the response, it skips for now
 
         //Populate final struture for database
         }else{
