@@ -6,6 +6,7 @@ import fileUpload from 'express-fileupload'
 import webpackConfig from '../../webpack.config.js'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 
+import graphQLConfig from './shared/graphql.js'
 import MainRouter from './routes/main.route.js'
 
 const app = express()
@@ -21,6 +22,7 @@ app.use(fileUpload({ createParentPath: true }))
 
 //Routes
 app.use("/api", MainRouter)
+app.use("/graphql", graphQLConfig)
 
 app.listen(port, () => {
     console.log("Server running on port: " + port)
