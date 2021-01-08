@@ -15,6 +15,4 @@ Create product import via csv files with Nodejs and Postgres on backend, and Rea
 * Webpack configuration is also raw and written by developer
 * Database connection, used postgres in Amazon RDS
 * No frontend libraries, neither react-scripts
-
-#### TODOS:
 * GraphQL server configuration
