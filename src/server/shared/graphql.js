@@ -13,7 +13,7 @@ import pool from './database.js'
 let products = []
 
 //Simple select from database
-const select_query = "SELECT * FROM products LIMIT 30"
+const select_query = "SELECT * FROM products"
 products = pool.query(select_query)
     .then((result) => result.rows)
 
