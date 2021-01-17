@@ -6,7 +6,7 @@ module.exports = {
     mode: 'development',
     entry: './src/client/index.js',
     output: {
-        path: __dirname + '/../../public/client/',
+        path: __dirname + '/public/client/',
         publicPath: '/',
         filename: 'bundle.js'
     },
