@@ -30,7 +30,7 @@ export default {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: './src/client/index.html'
+            template: './public/index.html'
         }),
         new LiveReloadPlugin()
     ]

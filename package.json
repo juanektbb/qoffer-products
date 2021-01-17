@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/server/devApp.js",
-    "webpack": "webpack --config webpack.prod.js",
     "build": "babel src/server --out-dir build/",
-    "start": "npm run build && node build/server.js"
+    "webpack": "webpack --config webpack.prod.js",
+    "start": "npm run build && npm run webpack && node build/app.js"
   },
   "keywords": [],
   "author": "",
