@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/server/devApp.js",
     "build": "babel src/server --out-dir build/",
-    "webpack": "webpack --config webpack.prod.js",
+    "webpack": "webpack --mode production",
     "start": "npm run build && npm run webpack && node build/app.js"
   },
   "keywords": [],

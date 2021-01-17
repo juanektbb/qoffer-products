@@ -6,6 +6,7 @@ import graphQLConfig from './shared/graphql.js'
 import MainRouter from './routes/main.route.js'
 
 const app = express()
+app.set('port', process.env.PORT || 3001)
 
 //Middlewares
 app.use(cors())

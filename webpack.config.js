@@ -1,12 +1,13 @@
-import webpack from 'webpack'
-import htmlWebpackPlugin from 'html-webpack-plugin'
-import LiveReloadPlugin from '@kooneko/livereload-webpack-plugin' //This package resolved compatibility issues
+const webpack = require('webpack')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const LiveReloadPlugin = require('@kooneko/livereload-webpack-plugin') //This package resolved compatibility issues
 
-export default {
-    mode: "development",
+module.exports = {
+    mode: 'development',
     entry: './src/client/index.js',
     output: {
-        path: '/',
+        path: __dirname + '/../../public/client/',
+        publicPath: '/',
         filename: 'bundle.js'
     },
     module: {
